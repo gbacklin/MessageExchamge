@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     @IBOutlet var textLabel: UILabel!
     @IBOutlet var entryTextField: UITextField!
+    @IBOutlet var statusLabel: UILabel!
     
     var notificationObserver: NSObjectProtocol?
 
@@ -40,9 +41,12 @@ class ViewController: UIViewController {
     }
 
     private func updateDisplay() {
-        DispatchQueue.main.async { () -> Void in
+        DispatchQueue.main.async {[weak self] () -> Void in
             if let messageFromWatch = Message.sharedInstance.messageFromWatch {
-                self.textLabel.text = messageFromWatch as? String
+                self!.textLabel.text = messageFromWatch as? String
+                self!.statusLabel.text = "Message received from watch"
+            } else {
+                self!.statusLabel.text = ""
             }
         }
     }
@@ -50,8 +54,9 @@ class ViewController: UIViewController {
     @IBAction func sendMessageToWatch(_ sender: UIBarButtonItem) {
         let message = entryTextField.text
         Message.sharedInstance.messageFromiPhone = message
-        DispatchQueue.main.async { () -> Void in
+        DispatchQueue.main.async {[weak self] () -> Void in
             NotificationCenter.default.post(name: Notification.Name(rawValue: NotificationMessageSentFromiPhone), object: message)
+            self!.statusLabel.text = "Message sent to watch"
         }
     }
     

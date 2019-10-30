@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15504" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38"/>
     <dependencies>
         <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14031"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15501"/>
     </dependencies>
     <scenes>
         <!--Received-->
@@ -14,15 +12,17 @@
             <objects>
                 <controller identifier="MessagedReceivedFromPhone" title="Received" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="MessageExchangeWatchKitApp" customModuleProvider="target">
                     <items>
-                        <label width="136" alignment="left" text="Received:" textAlignment="center" id="Opd-ue-SlK"/>
-                        <label width="136" alignment="left" text="Label" textAlignment="center" id="ZnX-bT-yk0"/>
+                        <label width="136" alignment="center" text="Received:" textAlignment="center" id="Opd-ue-SlK"/>
+                        <label width="136" alignment="center" text="Label" textAlignment="center" id="ZnX-bT-yk0"/>
                         <button width="1" alignment="left" title="Reply" id="9Y2-GN-bCU">
                             <connections>
                                 <action selector="createResponse" destination="AgC-eL-Hgc" id="6Jk-uu-OkX"/>
                             </connections>
                         </button>
+                        <label width="136" alignment="center" text="Label" textAlignment="center" id="ux9-J9-7rR"/>
                     </items>
                     <connections>
+                        <outlet property="statusLabel" destination="ux9-J9-7rR" id="JQJ-FS-jRy"/>
                         <outlet property="textLabel" destination="ZnX-bT-yk0" id="aVd-F9-mkw"/>
                     </connections>
                 </controller>

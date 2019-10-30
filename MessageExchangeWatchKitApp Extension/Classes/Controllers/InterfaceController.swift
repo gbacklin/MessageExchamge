@@ -12,6 +12,7 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
     @IBOutlet var textLabel: WKInterfaceLabel!
+    @IBOutlet var statusLabel: WKInterfaceLabel!
     
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
@@ -33,17 +34,20 @@ class InterfaceController: WKInterfaceController {
     func updateDisplay() {
         if let response = Message.sharedInstance.messageFromiPhone {
             textLabel.setText(response as? String)
+            statusLabel.setText("Message received")
             WKInterfaceDevice.current().play(.click)
         } else {
             textLabel.setText("")
+            statusLabel.setText("")
         }
     }
     
     func sendResponseToiPhone(response: Any) {
         Message.sharedInstance.messageFromWatch = response
-        DispatchQueue.main.async { () -> Void in
+        DispatchQueue.main.async {[weak self] () -> Void in
             let notificationCenter = NotificationCenter.default
             notificationCenter.post(name: Notification.Name(rawValue: NotificationMessageSentFromWatch), object: nil)
+            self!.statusLabel.setText("Message sent")
         }
     }
 
