@@ -9,7 +9,6 @@
 import WatchKit
 import Foundation
 
-
 class InterfaceController: WKInterfaceController {
     @IBOutlet var textLabel: WKInterfaceLabel!
     @IBOutlet var statusLabel: WKInterfaceLabel!
@@ -35,7 +34,6 @@ class InterfaceController: WKInterfaceController {
         if let response = Message.sharedInstance.messageFromiPhone {
             textLabel.setText(response as? String)
             statusLabel.setText("Message received")
-            WKInterfaceDevice.current().play(.click)
         } else {
             textLabel.setText("")
             statusLabel.setText("")

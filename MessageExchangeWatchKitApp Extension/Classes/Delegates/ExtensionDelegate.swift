@@ -98,6 +98,7 @@ extension ExtensionDelegate: WCSessionDelegate {
         if let responseFromiPhone = applicationContext["message"] {
             Message.sharedInstance.messageFromiPhone = responseFromiPhone
             DispatchQueue.main.async {
+                WKInterfaceDevice.current().play(.success)
                 WKInterfaceController.reloadRootPageControllers(withNames: ["MessagedReceivedFromPhone"],
                                                                 contexts: nil,
                                                                 orientation: WKPageOrientation.vertical,

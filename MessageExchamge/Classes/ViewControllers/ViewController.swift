@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox.AudioServices
 
 class ViewController: UIViewController {
     @IBOutlet var textLabel: UILabel!
@@ -43,6 +44,7 @@ class ViewController: UIViewController {
     private func updateDisplay() {
         DispatchQueue.main.async {[weak self] () -> Void in
             if let messageFromWatch = Message.sharedInstance.messageFromWatch {
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
                 self!.textLabel.text = messageFromWatch as? String
                 self!.statusLabel.text = "Message received from watch"
             } else {
